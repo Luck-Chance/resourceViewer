@@ -1,14 +1,23 @@
-#include <iostream>
-#include <fstream>
-using namespace std;
+#include "resourceviewer.h"
 
-int main() {
-  // Create and open a text file
-  ofstream MyFile("filename.txt");
+#include <QApplication>
+#include <QLocale>
+#include <QTranslator>
 
-  // Write to the file
-  MyFile << "Files can be tricky, but it is fun enough!";
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
 
-  // Close the file
-  MyFile.close();
-} 
+    QTranslator translator;
+    const QStringList uiLanguages = QLocale::system().uiLanguages();
+    for (const QString &locale : uiLanguages) {
+        const QString baseName = "resourceViewer_" + QLocale(locale).name();
+        if (translator.load(":/i18n/" + baseName)) {
+            a.installTranslator(&translator);
+            break;
+        }
+    }
+    resourceViewer w;
+    w.show();
+    return a.exec();
+}
