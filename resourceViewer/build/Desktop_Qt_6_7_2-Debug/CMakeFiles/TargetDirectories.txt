@@ -1,9 +1,0 @@
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/resourceViewer.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/edit_cache.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/rebuild_cache.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/list_install_components.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install/local.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install/strip.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/resourceViewer_autogen_timestamp_deps.dir
-/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/resourceViewer_autogen.dir

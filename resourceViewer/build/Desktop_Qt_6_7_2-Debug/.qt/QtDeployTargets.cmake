@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_resourceViewer_FILE /home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/resourceViewer)
-set(__QT_DEPLOY_TARGET_resourceViewer_TYPE EXECUTABLE)

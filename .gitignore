@@ -34,6 +34,6 @@
 .vscode
 
 access.txt
-./resourceViewer/CMakeLists.txt.user
-./resourceViewer/resourceviewer.ui.autosave
-./resourceViewer/build
+/resourceViewer/CMakeLists.txt.user
+/resourceViewer/resourceviewer.ui.autosave
+/resourceViewer/build
