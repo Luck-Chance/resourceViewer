@@ -1,0 +1,9 @@
+# ninja log v6
+1	229	1721074769966845895	resourceViewer_autogen/timestamp	ba4fafd7aad10b6d
+1	229	1721074769966845895	resourceViewer_autogen/mocs_compilation.cpp	ba4fafd7aad10b6d
+1	229	1721074769966845895	/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/resourceViewer_autogen/timestamp	ba4fafd7aad10b6d
+1	229	1721074769966845895	/home/luck/resourceViewer/resourceViewer/build/Desktop_Qt_6_7_2-Debug/resourceViewer_autogen/mocs_compilation.cpp	ba4fafd7aad10b6d
+230	1328	1721074769973845531	CMakeFiles/resourceViewer.dir/resourceViewer_autogen/mocs_compilation.cpp.o	8db679cad4527a19
+230	1341	1721074769973845531	CMakeFiles/resourceViewer.dir/main.cpp.o	21077a7794b65f50
+231	1913	1721074769974845479	CMakeFiles/resourceViewer.dir/resourceviewer.cpp.o	26785f8edee2d488
+1913	2127	1721074771656758318	resourceViewer	4037b4f13da2a77c
