@@ -11,13 +11,14 @@ class cpu
     int numCPUs;
     QString CPUname;
 
-    int findCPUCount();
+    void findCPUCount();
     void findCPUName();
 
     public:
         cpu();
 
         QString getCPUName();
+        int getNumCPUs();
 };
 
 #endif // CPU_H
