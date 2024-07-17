@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>resourceViewer</string>
+   <string>Resource Viewer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -52,6 +52,58 @@
          <property name="title">
           <string>cpuGroup</string>
          </property>
+         <widget class="QLabel" name="cpuTestNum">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>181</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Number of CPUs:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="cpuTestName">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>50</y>
+            <width>181</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Name of CPU:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="cpuTestUsage">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>70</y>
+            <width>181</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>CPU usage: </string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="cpuTestCore1">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>90</y>
+            <width>181</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Core 1 Usage:</string>
+          </property>
+         </widget>
         </widget>
        </item>
        <item row="1" column="1">
