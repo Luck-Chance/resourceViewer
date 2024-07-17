@@ -4,12 +4,18 @@
 #include <QThread>
 #include <QProcess>
 
-class processThread
+class processThread : public QThread
 {
-
+    QProcess *process;
+    QString program;
+    QStringList arguments;
 
     public:
-        processThread();
+        explicit processThread(QObject *parent = nullptr);
+        ~processThread();
+        void setProcess(const QString &program, const QStringList &arguments);
+        void run() override;
+        QString getOutput();
 };
 
 #endif // PROCESSTHREAD_H

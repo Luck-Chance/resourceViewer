@@ -1,6 +1,9 @@
 #ifndef CPU_H
 #define CPU_H
 
+#include <QCoreApplication>
+#include "processthread.h"
+
 #include <QProcess>
 
 class cpu
@@ -9,7 +12,7 @@ class cpu
     QString CPUname;
 
     int findCPUCount();
-    QString findCPUName();
+    void findCPUName();
 
     public:
         cpu();

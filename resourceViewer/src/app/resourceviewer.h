@@ -1,6 +1,8 @@
 #ifndef RESOURCEVIEWER_H
 #define RESOURCEVIEWER_H
 
+#include "cpu.h"
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -13,11 +15,15 @@ class resourceViewer : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    resourceViewer(QWidget *parent = nullptr);
-    ~resourceViewer();
+    public:
+        resourceViewer(QWidget *parent = nullptr);
+        ~resourceViewer();
 
-private:
-    Ui::resourceViewer *ui;
+    protected:
+        void timerEvent(QTimerEvent *evnet);
+
+    private:
+        Ui::resourceViewer *ui;
+        int timerID;
 };
 #endif // RESOURCEVIEWER_H

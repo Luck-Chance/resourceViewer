@@ -1,17 +1,31 @@
 #include "cpu.h"
 
-#include "processthread.h"
+//private
 
 cpu::cpu() {
     numCPUs = findCPUCount();
-    QString CPUname = "";
 }
 
 int cpu::findCPUCount() {
     return 0;
 }
 
-QString cpu::findCPUName() {
+void cpu::findCPUName() {
+    QString program = "bash";
+    QStringList arguments;
+    arguments << "-c" << " cat /proc/cpuinfo | grep \"model name\" | sort -u | cut -d \":\" -f2-";
 
-    return "";
+    processThread thread;
+
+    thread.setProcess(program, arguments);
+    thread.run();
+
+    CPUname = thread.getOutput();;
+}
+
+//public
+
+QString cpu::getCPUName() {
+    findCPUName();
+    return CPUname;
 }
