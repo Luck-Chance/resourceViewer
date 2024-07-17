@@ -1,4 +1,5 @@
 #include "resourceviewer.h"
+#include "cpu.h"
 
 #include <QApplication>
 

@@ -31,9 +31,8 @@
 *.out
 *.app
 
-.vscode
 
+*.autosave
 access.txt
 /resourceViewer/CMakeLists.txt.user
-/resourceViewer/resourceviewer.ui.autosave
 /resourceViewer/build
