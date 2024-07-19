@@ -82,7 +82,7 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>70</y>
+            <y>90</y>
             <width>181</width>
             <height>17</height>
            </rect>
@@ -95,13 +95,26 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>90</y>
+            <y>110</y>
             <width>181</width>
             <height>17</height>
            </rect>
           </property>
           <property name="text">
            <string>Core 1 Usage:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="cpuTestCoreName">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>70</y>
+            <width>351</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Name of First CPU:</string>
           </property>
          </widget>
         </widget>

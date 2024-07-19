@@ -39,6 +39,6 @@ void processThread::run() {
 
 QString processThread::getOutput() {
     QString output = process->readAllStandardOutput();
-    return output.remove(0,1);
+    return output;
 }
 

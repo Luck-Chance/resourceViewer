@@ -17,22 +17,27 @@
 
 #include "cpu.h"
 
+#include <QDebug>
+
 //private
 
 cpu::cpu() {
+    findCPUCount();
+    findCPUName();
+    findCPUCoreNames();
 }
 
 void cpu::findCPUCount() {
     QString program = "bash";
     QStringList arguments;
-    arguments << "-c" << " cat /proc/cpuinfo | grep processor | tail -n 1 | cut -d \":\" -f2-";
+    arguments << "-c" << " cat /proc/cpuinfo | grep processor -c";
 
     processThread thread;
 
     thread.setProcess(program, arguments);
     thread.run();
 
-    numCPUs = thread.getOutput().toInt() + 1;
+    numCPUs = thread.getOutput().toInt();
 
 }
 
@@ -46,17 +51,60 @@ void cpu::findCPUName() {
     thread.setProcess(program, arguments);
     thread.run();
 
-    CPUname = thread.getOutput();
+    CPUname = thread.getOutput().remove(0,1);
+}
+
+void cpu::findCPUCoreNames() {
+    CPUCoreNames = new QString[numCPUs];
+
+    QString program = "bash";
+    QStringList arguments;
+    arguments << "-c" << " cat /proc/stat | grep cpu |tail -n +2 | cut -d \" \" -f1";
+
+    processThread thread;
+
+    thread.setProcess(program, arguments);
+    thread.run();
+
+    QString temp = thread.getOutput();
+
+    int i = 0;
+    foreach(const QString& line, temp.split('\n')) {
+        if (i < numCPUs) {
+            CPUCoreNames[i] = line;
+            i++;
+        }
+    }
 }
 
 //public
 
 QString cpu::getCPUName() {
-    findCPUName();
     return CPUname;
 }
 
 int cpu::getNumCPUs() {
-    findCPUCount();
     return numCPUs;
 }
+
+QString cpu::getCPUCoreName(int core) {
+    return CPUCoreNames[core];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

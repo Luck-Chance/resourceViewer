@@ -20,7 +20,7 @@ class resourceViewer : public QMainWindow
         ~resourceViewer();
 
     protected:
-        void timerEvent(QTimerEvent *evnet);
+        void timerEvent(QTimerEvent *event);
 
     private:
         Ui::resourceViewer *ui;

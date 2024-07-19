@@ -18,15 +18,14 @@
 #include "resourceviewer.h"
 #include "./ui_resourceviewer.h"
 
-resourceViewer::resourceViewer(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::resourceViewer)
+resourceViewer::resourceViewer(QWidget *parent) : QMainWindow(parent), ui(new Ui::resourceViewer)
 {
     ui->setupUi(this);
 
     cpu CPU;
     ui->cpuTestName->setText("CPU Name: " + CPU.getCPUName());
     ui->cpuTestNum->setText("Number of CPUs: " + QString().setNum(CPU.getNumCPUs()));
+    ui->cpuTestCoreName->setText("CPU 1 Name: " + CPU.getCPUCoreName(0));
     timerID = startTimer(1000);
 }
 
