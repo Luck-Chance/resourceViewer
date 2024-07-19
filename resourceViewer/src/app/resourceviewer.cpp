@@ -18,14 +18,29 @@
 #include "resourceviewer.h"
 #include "./ui_resourceviewer.h"
 
-resourceViewer::resourceViewer(QWidget *parent) : QMainWindow(parent), ui(new Ui::resourceViewer)
-{
-    ui->setupUi(this);
+//private
 
-    cpu CPU;
+void resourceViewer::getCPUInfo() {
     ui->cpuTestName->setText("CPU Name: " + CPU.getCPUName());
     ui->cpuTestNum->setText("Number of CPUs: " + QString().setNum(CPU.getNumCPUs()));
     ui->cpuTestCoreName->setText("CPU 1 Name: " + CPU.getCPUCoreName(0));
+}
+
+//protected
+
+void resourceViewer::timerEvent(QTimerEvent *event) {
+    CPU.updateCPUUsage();
+
+    ui->cpuTestUsage->setText("CPU Usage: " +  QString().setNum(CPU.getCPUUsage()));
+    ui->cpuTestCore1->setText("CPU0 Usage: " +  QString().setNum(CPU.getCPUCoreUsage(0)));
+}
+
+//public
+
+resourceViewer::resourceViewer(QWidget *parent) : QMainWindow(parent), ui(new Ui::resourceViewer)
+{
+    ui->setupUi(this);
+    getCPUInfo();
     timerID = startTimer(1000);
 }
 
@@ -34,6 +49,3 @@ resourceViewer::~resourceViewer()
     delete ui;
 }
 
-void resourceViewer::timerEvent(QTimerEvent *event) {
-
-}

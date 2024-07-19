@@ -17,22 +17,19 @@
 
 #include "cpu.h"
 
-#include <QDebug>
-
 //private
 
 cpu::cpu() {
     findCPUCount();
     findCPUName();
     findCPUCoreNames();
+    setUsagePtrSize();
 }
 
 void cpu::findCPUCount() {
     QString program = "bash";
     QStringList arguments;
     arguments << "-c" << " cat /proc/cpuinfo | grep processor -c";
-
-    processThread thread;
 
     thread.setProcess(program, arguments);
     thread.run();
@@ -46,8 +43,6 @@ void cpu::findCPUName() {
     QStringList arguments;
     arguments << "-c" << " cat /proc/cpuinfo | grep \"model name\" | sort -u | cut -d \":\" -f2-";
 
-    processThread thread;
-
     thread.setProcess(program, arguments);
     thread.run();
 
@@ -59,9 +54,7 @@ void cpu::findCPUCoreNames() {
 
     QString program = "bash";
     QStringList arguments;
-    arguments << "-c" << " cat /proc/stat | grep cpu |tail -n +2 | cut -d \" \" -f1";
-
-    processThread thread;
+    arguments << "-c" << " cat /proc/stat | grep cpu | tail -n +2 | cut -d \" \" -f1";
 
     thread.setProcess(program, arguments);
     thread.run();
@@ -69,12 +62,18 @@ void cpu::findCPUCoreNames() {
     QString temp = thread.getOutput();
 
     int i = 0;
-    foreach(const QString& line, temp.split('\n')) {
+    for(const QString& line : temp.split('\n')) {
         if (i < numCPUs) {
             CPUCoreNames[i] = line;
             i++;
         }
     }
+}
+
+void cpu::setUsagePtrSize() {
+    cpuSum = new int[numCPUs];
+    cpuIdle = new int[numCPUs];
+    cpuCoreUsage = new float[numCPUs];
 }
 
 //public
@@ -91,6 +90,69 @@ QString cpu::getCPUCoreName(int core) {
     return CPUCoreNames[core];
 }
 
+void cpu::updateCPUUsage() {
+    QString program = "bash";
+    QStringList arguments;
+    arguments << "-c" << " cat /proc/stat | grep cpu | tail -n +2 | cut -d \" \" -f2-";
+
+    thread.setProcess(program, arguments);
+    thread.run();
+
+    QString temp = thread.getOutput();
+
+    bool first = true;
+
+    if(cpuLastSum == nullptr){
+        cpuLastSum = new int[numCPUs];
+        cpuLastIdle = new int[numCPUs];
+    }
+    else {
+        first = false;
+        for (int i = 0; i < numCPUs; i++) {
+            cpuLastSum[i] = cpuSum[i];
+            cpuLastIdle[i] = cpuIdle[i];
+        }
+    }
+
+    int i = 0;
+    cpuUsage = 0;
+    for(const QString& core : temp.split('\n')) {
+        if (i >= numCPUs)
+            break;
+
+        int j = 0;
+        cpuSum[i] = 0;
+        for(const QString& proc : core.split(' ')) {
+            if (j == 3)
+                cpuIdle[i] = proc.toInt();
+            else if (j == 4)
+                cpuIdle[i] += proc.toInt();
+            cpuSum[i] += proc.toInt();
+            j++;
+        }
+        if (!first) {
+            int cpuDelta = cpuSum[i] - cpuLastSum[i];
+            int cpuIdleDelta = cpuIdle[i] - cpuLastIdle[i];
+            cpuCoreUsage[i] = 100 * ((cpuDelta - cpuIdleDelta) / float(cpuDelta));
+
+            //cpuCoreUsage[i] = 100 * ((cpuSum[i] - cpuIdle[i]) / float(cpuSum[i]));
+        }
+        else {
+            cpuCoreUsage[i] = 0;
+        }
+        cpuUsage += cpuCoreUsage[i];
+        i++;
+    }
+    cpuUsage /= numCPUs;
+}
+
+float cpu::getCPUCoreUsage(int core) {
+    return cpuCoreUsage[core];
+}
+
+float cpu::getCPUUsage() {
+    return cpuUsage;
+}
 
 
 

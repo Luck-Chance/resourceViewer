@@ -8,13 +8,15 @@
 
 class cpu
 {
+    processThread thread;
+
     int numCPUs;
     int* cpuSum;
-    int* cpuLastSum;
+    int* cpuLastSum = nullptr;
     int* cpuIdle;
-    int* cpuLastIdle;
-    int* cpuDelta;
-    int* cpuUsage;
+    int* cpuLastIdle = nullptr;
+    float* cpuCoreUsage;
+    float cpuUsage;
 
     QString CPUname;
     QString* CPUCoreNames;
@@ -23,7 +25,7 @@ class cpu
     void findCPUCoreNames();
     void findCPUName();
 
-    void updateCPUUsage();
+    void setUsagePtrSize();
 
     public:
         cpu();
@@ -31,8 +33,10 @@ class cpu
         QString getCPUName();
         QString getCPUCoreName(int core);
         int getNumCPUs();
+
+        void updateCPUUsage();
         float getCPUCoreUsage(int core);
-        float getCPUTotalUsage();
+        float getCPUUsage();
 };
 
 #endif // CPU_H

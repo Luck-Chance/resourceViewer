@@ -15,15 +15,18 @@ class resourceViewer : public QMainWindow
 {
     Q_OBJECT
 
-    public:
-        resourceViewer(QWidget *parent = nullptr);
-        ~resourceViewer();
+    cpu CPU;
+    int timerID;
+
+    Ui::resourceViewer *ui;
+
+    void getCPUInfo();
 
     protected:
         void timerEvent(QTimerEvent *event);
 
-    private:
-        Ui::resourceViewer *ui;
-        int timerID;
+    public:
+        resourceViewer(QWidget *parent = nullptr);
+        ~resourceViewer();
 };
 #endif // RESOURCEVIEWER_H
