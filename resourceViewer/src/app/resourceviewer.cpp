@@ -35,4 +35,5 @@ resourceViewer::~resourceViewer()
 }
 
 void resourceViewer::timerEvent(QTimerEvent *event) {
+
 }

@@ -1,6 +1,7 @@
 # Resource Viewer
 System Monitor alternative including NVidia GPU stats
 
+This project is created and maintained by a learning student, and as such any suggestions are accepted and leniency is requested in faults. 
 
 Copyright 2024 Nathan Roehrig
 
